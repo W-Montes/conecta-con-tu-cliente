@@ -123,23 +123,14 @@ const frases = [
 
 const fraseElement = document.getElementById("frase");
 const categoriaElement = document.getElementById("categoria");
-const boton = document.getElementById("nuevaFrase");
-
-let ultima = -1;
 
 function mostrarFrase() {
-  let indice;
-
-  do {
-    indice = Math.floor(Math.random() * frases.length);
-  } while (frases.length > 1 && indice === ultima);
-
-  ultima = indice;
+  const indice = Math.floor(Math.random() * frases.length);
 
   fraseElement.style.animation = "none";
   categoriaElement.style.opacity = "0";
 
-  // Fuerza al navegador a reiniciar la animación.
+  // Reinicia la animación
   void fraseElement.offsetWidth;
 
   fraseElement.textContent = `“${frases[indice].texto}”`;
@@ -153,8 +144,6 @@ function mostrarFrase() {
   }, 180);
 }
 
-boton.addEventListener("click", mostrarFrase);
-
-// Cada vez que alguien escanea el QR y abre la página,
-// recibe automáticamente una frase.
+// Al escanear el QR y cargar la página, muestra automáticamente una frase
 mostrarFrase();
+
